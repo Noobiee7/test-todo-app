@@ -1,3 +1,5 @@
+dckr_pat_zmIB-LNfYAN_Ai7dBEsivb_s-3A- token docker hub
+
 pipeline{
     agent {label "vinod"}
     

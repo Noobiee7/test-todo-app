@@ -3,16 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <title>Simple To-Do App</title>
-  <style>
-    body { font-family: sans-serif; margin: 40px; }
-    input, button { padding: 8px; }
-    ul { padding-left: 0; }
-    li { list-style: none; margin: 5px 0; }
-    li button { margin-left: 10px; }
+<style>
+    body { font-family: Arial; text-align: center; background-color: #afa5a5; margin-top: 250px; }
+    input, button { padding: 8px; margin-top: 10px; width: 300px; }
+    button { width: 120px; margin-left: 10px; }
+    p { font-weight: bold; }
   </style>
 </head>
 <body>
-  <h1>To-Do List</h1>
+ <h1 style="
+  color: #1c2d3f;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-left:37%;
+  border-bottom: 2px solid #ddd; width: 500px;
+  padding-bottom: 10px;
+">
+  To-Do List
+</h1>
+
   <input id="todoInput" placeholder="Enter task" />
   <button onclick="addTodo()">Add</button>
   <ul id="todoList"></ul>

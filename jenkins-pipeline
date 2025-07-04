@@ -1,0 +1,43 @@
+pipeline{
+    agent {label "vinod"}
+    
+    stages{
+        stage("Code"){
+            steps{
+                echo "this is git cloning"
+                git url:"https://github.com/Noobiee7/test-todo-app.git", branch:"master"
+                echo "Git Clone successful"    
+            }
+        }
+        stage("Build"){
+            steps{
+                echo"building docker image"
+                sh "docker build -t todo-app2:latest ."
+                echo"docker image build"
+            }
+        }
+        stage("Push to DockerHub"){
+            steps{
+                echo"pushing docker image"
+                WithCredentials([usernamePassword(
+                    'credentialsId':"dockerHubCred",
+                    passwordVariable:"dockerHubPass",
+                    usernameVariable:"dockerHubUser")]){
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                sh "docker tag todo-app:latest shelby777/todo-app:latest"
+                sh "docker push shelby777/todo-app:latest"
+                echo"docker image pushed to DockerHub"
+                }
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "deploying the image"
+                sh "docker compose up -d"
+                echo "deployment done"
+            }
+        }
+    }
+        
+    
+}
